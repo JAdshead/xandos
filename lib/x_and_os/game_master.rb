@@ -16,7 +16,6 @@ module XAndOs
       end
     end
 
-    protected
 
     def total_cells
       board.count_cells
@@ -64,7 +63,7 @@ module XAndOs
       end.sample
     end
 
-    private
+    # private
 
     def winning_lines
       @winning_lines ||= WINNING_LINES
@@ -113,7 +112,6 @@ module XAndOs
       # and move logic to board
       [1,3,7,9]
     end
-  end
-
+  
   end
 end
