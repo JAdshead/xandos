@@ -6,7 +6,7 @@ class XAndOs::Game
     @board    = XAndOs::Board.new
   end
 
-  def new_move(cell, marker = get_marker)
+  def add_move(cell, marker = get_marker)
     self if board.set_cell(cell, marker)
   end
 

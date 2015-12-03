@@ -5,5 +5,6 @@ gemspec
 
 gem 'rspec', group: :test
 gem 'rake', group: :test
+gem 'pry', group: :test
 
 

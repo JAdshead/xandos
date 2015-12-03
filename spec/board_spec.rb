@@ -100,4 +100,20 @@ describe Board do
       expect(board.find_cells('x')).to  eq([1,2,3,4,5,6])
     end
   end
+
+  describe '#cell_locations' do 
+    before(:each) do
+      (1..5).each do |i|
+        board.set_cell(i,'x')
+      end
+
+      (6..8).each do |i|
+        board.set_cell(i,'o')
+      end
+    end
+
+    it 'returns cells with locations' do
+      expect(board.cell_locations).to eq({ 'x'=>[1,2,3,4,5], 'o'=>[6,7,8] })
+    end
+  end
 end

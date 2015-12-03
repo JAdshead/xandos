@@ -59,6 +59,17 @@ class XAndOs::Board
     find_cells default_value
   end
 
+  def cell_locations
+    store = Hash.new {|h,k| h[k] = [] }
+    
+    grid.flatten.map.with_index.inject(store) do |store, (cell, index)|
+      if cell != default_value
+        store[cell].push(index + 1)
+      end
+      store
+    end
+  end
+
   private
 
   def human_to_grid(cell_num)
