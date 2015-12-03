@@ -1,11 +1,14 @@
 module XAndOs
-  module GameMaster
+  module GameMastery
 
     WINNING_LINES = [
       [1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]
     ]
 
-    def best_move
+    def best_move(args={})
+      @mastery_board  = args[:board]  || get_game_board
+      @current_marker = args[:marker] || get_marker
+
       move = win || block || fork_move || force_block || block_fork
       return move if move
 
@@ -16,17 +19,47 @@ module XAndOs
       end
     end
 
+    private
+
+
+    def mastery_board
+      @mastery_board
+    end
+
+    def current_marker
+      @current_marker
+    end
+
+    def get_marker
+      @marker || marker_error
+    end
+
+    def get_game_board
+      @board || board_error
+    end
+
+    def marker_error
+      raise 'You must pass a value for marker e.g best_move(marker: "x") or set @marker'
+    end
+
+    def board_error
+      raise 'You must pass valid Board or have @board set to a valid board instance, for example an instance of XAndOS::Board'
+    end
+
+    # def moves_made
+    #   mastery_board.cell_locations.max_by {|k,v| v.size }[1]
+    # end
 
     def total_cells
-      board.count_cells
+      mastery_board.count_cells
     end
 
     def available_moves
-      board.free_cells
+      mastery_board.free_cells
     end
 
     def moves_made
-      board.find_cells(marker)
+      mastery_board.find_cells(current_marker)
     end
 
     def opponent_moves
@@ -112,6 +145,6 @@ module XAndOs
       # and move logic to board
       [1,3,7,9]
     end
-  
+    
   end
 end
