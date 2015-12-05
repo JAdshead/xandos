@@ -2,8 +2,8 @@ class XAndOs::Game
 
   attr_reader :board
 
-  def initialize(*args)
-    @board    = XAndOs::Board.new
+  def initialize(args = {})
+    @board = args[:board] || XAndOs::Board.new
   end
 
   def add_move(cell, marker = get_marker)

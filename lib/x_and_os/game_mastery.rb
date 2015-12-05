@@ -46,10 +46,6 @@ module XAndOs
       raise 'You must pass valid Board or have @board set to a valid board instance, for example an instance of XAndOS::Board'
     end
 
-    # def moves_made
-    #   mastery_board.cell_locations.max_by {|k,v| v.size }[1]
-    # end
-
     def total_cells
       mastery_board.count_cells
     end

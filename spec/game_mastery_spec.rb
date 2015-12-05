@@ -103,8 +103,6 @@ describe GameMastery do
     end
 
     it 'will pick corner when other moves cant be made' do
-      # allow(board).to receive(:free_cells) {[1,2,3,4,6,7,8,9]}
-
       allow(board).to receive(:grid) {[[' ',' ',' '],
                                        [' ','x',' '],
                                        [' ',' ',' ']]}
