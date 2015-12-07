@@ -3,7 +3,14 @@ module TicTacToe
     attr_writer :name
 
     def name
-      @name ||= self.class.to_s.sub('TicTacToe::', '')
+      @name ||= name_creator
+    end
+
+    private
+
+    def name_creator
+      name = self.class.to_s.sub('TicTacToe::', '')
+      name += " #{marker}" if marker
     end
   end
 end
