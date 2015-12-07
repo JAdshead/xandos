@@ -22,14 +22,15 @@ Or install it yourself as:
 
 ## Usage
 
-You can use XAndOs to play Tic Tac Toe in the command line
-`XAndOs`
-
 ### Game
 
 ### Board
 
 ### Game Mastery
+
+### Command Line App
+You can use XAndOs to play Tic Tac Toe in the command line
+`XAndOs`
 
 ## Development
 

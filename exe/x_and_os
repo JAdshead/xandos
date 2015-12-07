@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require_relative '../cla/tic_tac_toe'
+
+TicTacToe::Application.new(ARGV)
