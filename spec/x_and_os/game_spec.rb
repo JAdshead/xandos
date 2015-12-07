@@ -1,6 +1,6 @@
 require 'spec_helper'
-require_relative '../lib/x_and_os/game'
-require_relative '../lib/x_and_os/board'
+require_relative '../../lib/x_and_os/game'
+require_relative '../../lib/x_and_os/board'
 
 include XAndOs
 

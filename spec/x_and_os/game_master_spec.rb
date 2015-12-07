@@ -1,6 +1,6 @@
 require 'spec_helper'
-require_relative '../lib/x_and_os/game_master'
-require_relative '../lib/x_and_os/board'
+require_relative '../../lib/x_and_os/game_master'
+require_relative '../../lib/x_and_os/board'
 
 include XAndOs
 
@@ -12,22 +12,17 @@ describe GameMaster do
     it 'returns correct winning lines on 3x3 board' do
       winning_lines = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
 
-      expect(game_master.winning_lines).to eq(winning_lines)
+      expect(game_master.winning_lines.sort).to eq(winning_lines.sort)
     end
 
     it 'returns correct winning lines on 2x2 board' do
       board = Board.new(2,2)
+      game_master = GameMaster.new(marker: 'x', board: board)
+
       winning_lines = [[1, 2], [3, 4], [1,3], [2,4], [1,4], [2,3]]
 
-      expect(game_master.winning_lines).to eq(winning_lines)
+      expect(game_master.winning_lines.sort).to eq(winning_lines.sort)
     end
-
-    # it 'returns correct winning lines on 4x4 board' do
-    #   board = Board.new(4,4)
-    #   winning_lines = [[1, 2], [3, 4], [1,3], [2,4], [1,4], [2,3]]
-
-    #   expect(game_master.winning_lines).to eq(winning_lines)
-    # end
   end
 
   describe '#best_move' do
