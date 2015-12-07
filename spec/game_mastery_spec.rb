@@ -45,15 +45,22 @@ describe GameMastery do
       expect(results).to eq([2,2,2,2,2,2])
     end
 
-    it 'will defend' do
+    it 'will defend vertically' do
       allow(board).to receive(:grid) {[['x',' ',' '],
                                        [' ',' ',' '],
                                        ['x','o',' ']]}
-
       results = []
       6.times { results << game_master.best_move(marker: 'o') }
-
       expect(results).to eq([4,4,4,4,4,4])
+    end
+
+    it 'will defend / block horizontaly' do
+      allow(board).to receive(:grid) {[['x',' ','o'],
+                                       [' ','x',' '],
+                                       [' ',' ',' ']]}
+      results = []
+      6.times { results << game_master.best_move(marker: 'o') }
+      expect(results).to eq([9,9,9,9,9,9])
     end
 
     it 'it will fork - create two oppotunities to win' do
@@ -88,6 +95,8 @@ describe GameMastery do
       6.times { results << game_master.best_move(marker: 'o') }
       expect(results).not_to include(1,2,6,7,8)
     end
+
+    
 
     it 'it will choose center' do
       allow(board).to receive(:free_cells).and_return( [1,2,4,5,6,7,8,9],[1,3,4,5,6,7,8,9],[1,2,3,4,5,7,8,9] )
