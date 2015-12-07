@@ -24,7 +24,7 @@ class XAndOs::Board
 
   def diagonal_rows
     left_to_right = (0...rows).map { |i| grid[i][i] }
-    right_to_left = (0...rows).map { |i| grid[i][rows - (i + 1)] }
+    right_to_left = (0...rows).map { |i| grid[i][columns - (i + 1)] }
     [left_to_right, right_to_left]
   end
 
@@ -45,6 +45,17 @@ class XAndOs::Board
       uniq_values = row.uniq
       uniq_values.include?(default_value) || uniq_values.count > 1
     end
+  end
+
+  def all_lines
+    temp_board    = self.class.new(rows, columns)
+    num_of_cells  = rows * columns
+
+    (1..num_of_cells).each do |i|
+      temp_board.set_cell(i,i)
+    end
+
+    temp_board.all_rows
   end
 
   def count_cells
@@ -78,7 +89,7 @@ class XAndOs::Board
   end
 
   def row_number(cell_num)
-    cell_num / rows
+    cell_num / columns
   end
 
   def column_number(cell_num)
