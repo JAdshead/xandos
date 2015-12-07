@@ -1,14 +1,14 @@
 module XAndOs
-  module GameMastery
-
-    WINNING_LINES = [
-      [1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]
-    ]
+  class GameMaster
+    attr_reader :board, :marker
+    def initialize(args = {})
+      @board      = args[:board]
+      @marker     = args[:marker]
+      @move_args  = {}
+    end
 
     def best_move(args={})
-      @mastery_board  = args[:board]  || get_game_board
-      @current_marker = args[:marker] || get_marker
-
+      @move_args = args
       move = win || block || fork_move || force_block || block_fork
       return move if move
 
@@ -19,30 +19,22 @@ module XAndOs
       end
     end
 
+    def winning_lines
+      @winning_lines ||= build_winning_lines
+    end
+    
     private
 
     def mastery_board
-      @mastery_board
+      @mastery_board  = @move_args[:board]  || board
     end
 
     def current_marker
-      @current_marker
+      @current_marker = @move_args[:marker] || marker
     end
 
-    def get_marker
-      @marker || marker_error
-    end
-
-    def get_game_board
-      @board || board_error
-    end
-
-    def marker_error
-      raise 'You must pass a value for marker e.g best_move(marker: "x") or set @marker'
-    end
-
-    def board_error
-      raise 'You must pass valid Board or have @board set to a valid board instance, for example an instance of XAndOS::Board'
+    def build_winning_lines
+      mastery_board.all_lines
     end
 
     def total_cells
@@ -93,12 +85,6 @@ module XAndOs
       available_moves.select do |move|
         corner_moves.include?(move)
       end.sample
-    end
-
-    # private
-
-    def winning_lines
-      @winning_lines ||= WINNING_LINES
     end
 
     def wining_moves(moves_made)
