@@ -78,7 +78,11 @@ module XAndOs
     end
 
     def center
-      5 if available_moves.include?(5)
+      # no center move for even numbered total cells
+      if mastery_board.count_cells.odd?
+        center_cell = (mastery_board.count_cells + 1) / 2
+        center_cell if available_moves.include?(center_cell)
+      end
     end
 
     def corner
