@@ -39,28 +39,30 @@ describe Board do
     end
   end
 
-  describe 'getting rows' do
+  describe 'getting rows with a 4x4 grid' do
+    let(:board) { Board.new(4,4) }
     before(:each) do
-      (1..9).each do |i|
+      
+      (1..16).each do |i|
         board.set_cell(i,i)
       end
     end
 
     describe '#diagonal_rows' do
       it 'returns diagonal values' do
-        expect(board.diagonal_rows).to eq([[1,5,9],[3,5,7]])
+        expect(board.diagonal_rows).to eq([[1,6,11,16],[4,7,10,13]])
       end
     end
 
     describe '#vertical_rows' do
       it 'returns column values' do
-        expect(board.vertical_rows).to eq([[1,4,7],[2,5,8],[3,6,9]])
+        expect(board.vertical_rows).to eq([[1,5,9,13],[2, 6, 10, 14], [3, 7, 11, 15], [4, 8, 12, 16]])
       end
     end
 
     describe '#horizontal_rows' do
       it 'returns row values' do
-        expect(board.horizontal_rows).to eq([[1,2,3],[4,5,6],[7,8,9]])
+        expect(board.horizontal_rows).to eq([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]])
       end
     end
   end
