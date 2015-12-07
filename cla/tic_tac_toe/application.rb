@@ -1,4 +1,3 @@
-# require_relative './option_parser'
 require_relative './game'
 
 module TicTacToe
