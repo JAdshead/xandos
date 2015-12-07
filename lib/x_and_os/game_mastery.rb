@@ -12,7 +12,7 @@ module XAndOs
       move = win || block || fork_move || force_block || block_fork
       return move if move
 
-      if available_moves.size == total_cells
+      if first_move
         1
       else
         center || corner || available_moves.sample
@@ -20,7 +20,6 @@ module XAndOs
     end
 
     private
-
 
     def mastery_board
       @mastery_board
@@ -60,6 +59,10 @@ module XAndOs
 
     def opponent_moves
       (1..9).to_a - (moves_made + available_moves)
+    end
+
+    def first_move
+      available_moves.size == total_cells
     end
 
     def win
