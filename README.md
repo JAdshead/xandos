@@ -1,8 +1,7 @@
 # XAndOs
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/x_and_os`. To experiment with that code, run `bin/console` for an interactive prompt.
+XAndOs provides the basic structure and game logic to easily create the game Tic Tac Toe.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -20,9 +19,17 @@ Or install it yourself as:
 
     $ gem install x_and_os
 
+
 ## Usage
 
-TODO: Write usage instructions here
+You can use XAndOs to play Tic Tac Toe in the command line
+`XAndOs`
+
+### Game
+
+### Board
+
+### Game Mastery
 
 ## Development
 
