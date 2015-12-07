@@ -30,7 +30,7 @@ Or install it yourself as:
 
 ### Command Line App
 You can use XAndOs to play Tic Tac Toe in the command line
-`XAndOs`
+`x_and_os`
 
 ## Development
 
