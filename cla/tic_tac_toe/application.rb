@@ -2,13 +2,34 @@ require_relative './option_parser'
 require_relative './game'
 
 module TicTacToe
-  class Application
-    attr_reader :options, :opt_parser
-    
+  class Application    
     def initialize(argv)
-      @opt_parser = TicTacToeOptionsParser.setup_parser(argv)
-      opt_parser.parse(argv)
-      game_type(argv)
+      start_app
+    end
+
+    def start_app
+      puts
+      puts 'Welcome to TicTacToe'
+
+      loop do  
+        puts
+        puts 'Choose Game type : '
+        puts '    pvp: player   vs  player'
+        puts '    pvc: player   vs  computer'
+        puts '    cvp: computer vs  player'
+        puts '    cvc: computer vs  computer'
+        puts '    exit: leave game'
+        puts
+
+        game = gets.chomp
+        break if game == 'exit'
+        game_type(game)
+
+        puts
+        puts 'Play again?'
+      end
+      puts
+      puts 'Thankyou for playing.'
     end
 
     def setup_game(p1, p2)
@@ -20,8 +41,8 @@ module TicTacToe
       @game.play
     end
 
-    def game_type(argv)
-      case argv[0]
+    def game_type(game)
+      case game
       when 'pvp'
         setup_game(HumanPlayer, HumanPlayer)
       when 'pvc'
@@ -31,7 +52,7 @@ module TicTacToe
       when 'cvc'
         setup_game(ComputerPlayer, ComputerPlayer)
       else
-        puts opt_parser
+        nil
       end
     end
   end
