@@ -2,15 +2,18 @@ module TicTacToe
   module Display
 
     def self.game_board(board)
-      total_rows = board.length
-
+      height    = board.length
+      width     = board.first.length
+      padding   = (width * height).to_s.length
+      
       puts
-
       board.each_with_index do |row, row_index|
         row_with_move_numbers = blank_cells_to_numbers(row, row_index)
+        
+        padded_row = add_padding_to_row(row_with_move_numbers, padding)
 
-        puts "\t " + row_with_move_numbers.flatten.join(' | ')
-        puts "\t --+---+--" unless row_index + 1 >= total_rows
+        puts "\t " + padded_row.join(' | ')
+        puts  divider(width, padding) unless row_index + 1 >= height
       end
 
       puts
@@ -18,6 +21,22 @@ module TicTacToe
 
  
     private
+
+    def self.divider(width, padding)
+      dividers = []
+      width.times do
+        dividers << ('-' * padding)
+      end
+
+      "\t #{dividers.join('-+-')}"
+    end
+
+    def self.add_padding_to_row(row, padding)
+      row.map do |cell|
+        format_string = "%-#{padding}s"
+        format_string % cell.to_s
+      end
+    end
 
     def self.blank_cells_to_numbers(row, row_index)
       previous_cells_count = row.length * row_index
