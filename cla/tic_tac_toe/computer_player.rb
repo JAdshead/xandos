@@ -14,7 +14,7 @@ module TicTacToe
     end
     
     def move(board)
-      best_move(board: board)
+      @game_master.best_move 
     end
   end
 end
