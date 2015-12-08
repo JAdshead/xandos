@@ -3,7 +3,9 @@ class XAndOs::Game
   attr_reader :board
 
   def initialize(args = {})
-    @board = args[:board] || XAndOs::Board.new
+    rows = args[:rows] || 3
+    columns = args[:columns] || 3
+    @board = args[:board] || XAndOs::Board.new(rows,columns)
   end
 
   def add_move(cell, marker = get_marker)
