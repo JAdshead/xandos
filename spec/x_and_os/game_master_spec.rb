@@ -10,7 +10,9 @@ describe GameMaster do
 
   describe '#winning_lines' do
     it 'returns correct winning lines on 3x3 board' do
-      winning_lines = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+      winning_lines = [[1, 2, 3], [4, 5, 6], [7, 8, 9], 
+                       [1, 4, 7], [2, 5, 8], [3, 6, 9], 
+                       [1, 5, 9], [3, 5, 7]]
 
       expect(game_master.winning_lines.sort).to eq(winning_lines.sort)
     end
@@ -159,7 +161,9 @@ describe GameMaster do
     describe 'center is free' do
       context '3x3' do
         it 'it will choose center' do
-          allow(board).to receive(:free_cells).and_return( [1,2,4,5,6,7,8,9],[1,3,4,5,6,7,8,9],[1,2,3,4,5,7,8,9] )
+          allow(board).to receive(:free_cells).and_return( [1,2,4,5,6,7,8,9],
+                                                           [1,3,4,5,6,7,8,9],
+                                                           [1,2,3,4,5,7,8,9] )
 
           results = []
           6.times { results << game_master.best_move(marker: 'o') }
