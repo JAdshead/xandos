@@ -18,6 +18,12 @@ describe Board do
     expect(board.grid).to eq(grid)
   end
 
+  it 'initializes with numbers in string' do
+    grid = [[' ', ' '],[' ', ' ']]
+    board = Board.new('2','2')
+    expect(board.grid).to eq(grid)
+  end
+
   describe '#set_cell' do
     it 'updates cell' do
       board.set_cell(3,'X')
