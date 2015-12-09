@@ -12,8 +12,8 @@ module TicTacToe
 
     def initialize(player_1_class = HumanPlayer, player_2_class = ComputerPlayer, board_size = 3)
       @game = XAndOs::Game.new(rows: board_size, columns: board_size)
-      @player1  = player_1_class.new(marker: 'x')
-      @player2  = player_2_class.new(marker: 'o')
+      @player1  = player_1_class.new(marker: 'x', board: board)
+      @player2  = player_2_class.new(marker: 'o', board: board)
       @turns    = 0
     end
 

@@ -8,7 +8,6 @@ module TicTacToe
     attr_reader :board, :marker
 
     def initialize(args = {})
-      @board  = args[:board]
       @marker = args[:marker]
     end
 
