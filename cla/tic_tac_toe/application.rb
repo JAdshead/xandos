@@ -1,4 +1,5 @@
-require_relative './game'
+require_relative './game_manager'
+require_relative './ui'
 
 module TicTacToe
   class Application    
@@ -7,52 +8,81 @@ module TicTacToe
     end
 
     def start_app
-      puts
-      puts 'Welcome to TicTacToe'
-
-      loop do  
-        puts
-        puts 'Choose Game type : '
-        puts '    pvp: player   vs  player'
-        puts '    pvc: player   vs  computer'
-        puts '    cvp: computer vs  player'
-        puts '    cvc: computer vs  computer'
-        puts '    exit: leave game'
-        puts
-
-        game = gets.chomp
-        break if game == 'exit'
-        game_type(game)
-
-        puts
-        puts 'Play again?'
+      UI.output
+      UI.output 'Welcome to TicTacToe'
+      UI.output 'Quick Game?'
+      settings unless UI.receive =~ /^y/i
+      loop do 
+        play 
+        UI.output
+        UI.output 'Play again?'
+        break unless UI.receive =~ /^y/i
+        UI.output
+        UI.output 'Change settings?'
+        settings if UI.receive =~ /^y/i
       end
-      puts
-      puts 'Thankyou for playing.'
+
+      UI.output
+      UI.output 'Thank you for playing.'
     end
 
-    def setup_game(p1, p2)
-      @game = Game.new(p1, p2)
-      play
+    private
+
+    def settings
+      choose_player
+      choose_board_size
+    end
+
+    def choose_player
+      UI.output
+      UI.output 'Choose Player : '
+      UI.output '    p:     player'
+      UI.output '    c:     computer'
+      UI.output
+      UI.output 'Player 1'
+      @player_one = player_type(UI.receive)
+      UI.output
+      UI.output 'Player 2'
+      @player_two = player_type(UI.receive)
+      UI.output
+    end
+
+    def choose_board_size
+      UI.output
+      UI.output 'Enter Board Size :'
+      UI.output '  3: 3x3'
+      UI.output '  4: 4x4'
+      UI.output '  N: NxN'
+      UI.output
+      size = UI.receive
+      @board_size = (size.to_i >= 1) ? size : 3
+      UI.output
     end
 
     def play
-      @game.play
+      GameManager.new(player_one, player_two, board_size).play
     end
 
-    def game_type(game)
-      case game
-      when 'pvp'
-        setup_game(HumanPlayer, HumanPlayer)
-      when 'pvc'
-        setup_game(HumanPlayer, ComputerPlayer)
-      when 'cvp'
-        setup_game(ComputerPlayer, HumanPlayer)
-      when 'cvc'
-        setup_game(ComputerPlayer, ComputerPlayer)
-      else
-        nil
+    def player_one
+      @player_one ||= HumanPlayer
+    end
+
+    def player_two
+      @player_two ||= ComputerPlayer
+    end
+
+    def board_size
+      @board_size ||= 3
+    end
+
+
+    def player_type(player)
+      if player =~ /^p/i
+        HumanPlayer
+      elsif player =~ /^c/i
+        ComputerPlayer
       end
     end
+
   end
 end
