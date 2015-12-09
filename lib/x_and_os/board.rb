@@ -2,10 +2,10 @@ class XAndOs::Board
   attr_reader :grid, :default_value, :rows, :columns
 
   def initialize(rows = 3, columns = 3, default_value = ' ')
-    @grid          = new_grid(rows, columns, default_value)
     @default_value = default_value
-    @rows          = rows
-    @columns       = columns
+    @rows          = rows.to_i
+    @columns       = columns.to_i
+    @grid          = new_grid
   end
 
   def set_cell(cell_num, value)
@@ -96,8 +96,8 @@ class XAndOs::Board
     cell_num - (row_number(cell_num) * columns)
   end
 
-  def new_grid(rows, columns, cell_value)
-    Array.new(rows) { Array.new(columns, cell_value) }
+  def new_grid
+    Array.new(rows) { Array.new(columns, default_value) }
   end
 end
 
