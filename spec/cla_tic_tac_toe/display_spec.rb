@@ -6,15 +6,14 @@ include TicTacToe
 describe Display do
 
   describe '#game_board' do
-    it 'prints to STDOUT' do
-      expect(STDOUT).to receive(:puts).exactly(7).times
+    it 'prints to UI' do
+      expect(UI).to receive(:output).exactly(7).times
       Display.game_board([[1,2,3],[4,5,6],[7,8,9]])
     end
 
     context 'with a 5x5 (non default) grid' do
-      
-      it 'prints to STDOUT' do
-        expect(STDOUT).to receive(:puts).exactly(11).times
+      it 'prints to UI' do
+        expect(UI).to receive(:output).exactly(11).times
         Display.game_board([[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]])
       end
     end

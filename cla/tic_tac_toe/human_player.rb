@@ -1,4 +1,6 @@
 require_relative './nameable'
+require_relative './ui'
+
 module TicTacToe
   class HumanPlayer
     include Nameable
@@ -10,8 +12,8 @@ module TicTacToe
       @marker = args[:marker]
     end
 
-    def move(board)
-      move = $stdin.gets.chomp
+    def move
+      move = UI.receive
     end
   end
 end

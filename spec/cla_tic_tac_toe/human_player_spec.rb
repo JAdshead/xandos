@@ -5,12 +5,12 @@ include TicTacToe
 
 describe HumanPlayer do
   subject(:player) { HumanPlayer.new }
-  let(:board) { double("Board", :grid => [[' ',' '],[' ',' ']], :print => '', :count_cells => 9, :free_cells => "5")}
+  let(:board) { Board.new }
 
   describe '#move' do
     it 'returns cell number' do
-      allow($stdin).to receive(:gets).and_return("5")
-      expect( player.move(board) ).to eq("5")
+      allow(UI).to receive(:receive).and_return("5")
+      expect( player.move ).to eq("5")
     end
   end
 

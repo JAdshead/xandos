@@ -1,3 +1,5 @@
+require_relative './ui'
+
 module TicTacToe
   module Display
 
@@ -6,20 +8,19 @@ module TicTacToe
       width     = board.first.length
       padding   = (width * height).to_s.length
       
-      puts
+      UI.output
       board.each_with_index do |row, row_index|
         row_with_move_numbers = blank_cells_to_numbers(row, row_index)
         
         padded_row = add_padding_to_row(row_with_move_numbers, padding)
 
-        puts "\t " + padded_row.join(' | ')
-        puts  divider(width, padding) unless row_index + 1 >= height
+        UI.output "\t " + padded_row.join(' | ')
+        UI.output  divider(width, padding) unless row_index + 1 >= height
       end
 
-      puts
+      UI.output
     end
 
- 
     private
 
     def self.divider(width, padding)
