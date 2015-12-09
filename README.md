@@ -1,7 +1,7 @@
 # XAndOs
 
 XAndOs provides the basic structure and game logic to easily create the game Tic Tac Toe.
-
+It also comes with a mini CLA to play Tic Tac Toe in the command line. 
 
 ## Installation
 
@@ -19,14 +19,14 @@ Or install it yourself as:
 
     $ gem install x_and_os
 
-
 ## Usage
 
 ### Game
-
+  TODO
 ### Board
-
+  TODO
 ### Game Mastery
+  TODO
 
 ### Command Line App
 You can use XAndOs to play Tic Tac Toe in the command line
