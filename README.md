@@ -28,7 +28,7 @@ require 'x_and_os'
 ### Game
 Used to manage the basic state of game.
 
-Initialze a new game with:
+Initialize a new game with:
 
 ```ruby
 XAndOS::Game.new
@@ -41,10 +41,10 @@ include XAndOs
 Game.new
 
 ```
-By default `Game.new` will create a new game object that uses the XAndOs::Board with a 3x3 grid.
+By default `Game.new` will create a new game object that uses the XAndOs::Board that has 3rows and 3columns.
 
-It is possible to pass set *rows* and *columns*
-when instantiating a new Game `Game.new`
+It is possible to set rows and columns
+when instantiating a new game
 
 ```ruby
 XAndOs::Game.new(rows: 4, columns: 3)
@@ -56,13 +56,58 @@ If you wish to use a different game board (not recommended):
 ```ruby
 custom_game_board = Board.new
 
-Game.new(board: custom_game_board)
+XAndOs::Game.new(board: custom_game_board)
+```
+
+#### game API
+
+`add_move` takes a cell number and a marker(optional) to put in the cell.
+
+```ruby
+@game = XAndOs::Game.new
+
+@game.add_move(5, 'x') 
+@game.add_move(1, 'o') 
+```
+or
+
+```ruby
+@game.add_move(5) 
+@game.add_move(1) 
+
+```
+Will result in a board with a grid that looks like this.
+
+```ruby
+@game.board.grid # [['o',' ',' '],
+                 #  [' ','x',' '],
+                 #  [' ',' ',' ']]
+```
+
+Cell numbers map left to right as such :
+```
+[[1,2,3],
+ [4,5,6],
+ [7,8,9]]
 ```
 
 
+`get_marker` returns the value of the next marker 'X' or 'O' depending on number of turns made. First move is always 'X'
+
+`winner?` returns `true` if there is a complete line e.g
+
+x |   | o
+--------
+o | x | 
+--------
+  |   |x
+
+
+`draw?` will return `true` when there are no moves available.
+
+
 ### Board
-
-
+  TODO
 ### Game Mastery
   TODO
 
