@@ -113,9 +113,10 @@ o | x | .
 
 ### Command Line App
 You can use x_and_os to play Tic Tac Toe / X and Os in the command line.
+
 After installing the gem run :
 
-  $ x_and_os
+    $ x_and_os
 
 And then follow the menu options.
 
