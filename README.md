@@ -96,11 +96,13 @@ Cell numbers map left to right as such :
 
 `winner?` returns `true` if there is a complete line e.g
 
-'x |   | o'
-'-------- '
-'o | x |  '
-'-------- '
-'  |   |x '
+```
+# x |   | o
+# -------- 
+# o | x |  
+# -------- 
+#   |   |x 
+```
 
 
 `draw?` will return `true` when there are no moves available.
