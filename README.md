@@ -101,7 +101,7 @@ Cell numbers map left to right as such :
 # -------- 
 # o | x |  
 # -------- 
-#   |   |x 
+#   |   | x 
 ```
 
 
