@@ -6,7 +6,6 @@ include XAndOs
 describe Board do
   subject(:board) { Board.new }
   let(:empty_grid) { [[' ',' ',' '],[' ', ' ',' '],[' ',' ',' ']] }
-  # let(:populated_grid) { [['X','O','X'],['O','O','O'],['X','X','X']] }
 
   it 'initializes with 3x3 \' \' grid when no values given' do
     expect(board.grid).to eq(empty_grid)
