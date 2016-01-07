@@ -130,9 +130,12 @@ module XAndOs
     end
 
     def corner_moves
-      # To be improved to dynamically work out corners
-      # and move logic to board
-      [1,3,7,9]
+      # [1,3,7,9]
+      corner_moves = [1]
+      total_columns = mastery_board.columns
+      corner_moves << total_columns
+      corner_moves << (total_cells - total_columns) + 1
+      corner_moves << total_cells
     end
     
   end

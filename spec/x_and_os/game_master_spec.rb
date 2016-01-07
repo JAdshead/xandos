@@ -27,6 +27,29 @@ describe GameMaster do
     end
   end
 
+  describe '#corner_moves' do
+    context '4x4 grid' do
+      let(:board) { Board.new(2,2) }
+      it 'returns cell numbers of the corners' do
+        expect(game_master.send(:corner_moves)).to eq([1,2,3,4])
+      end
+    end
+
+    context '3x3 grid' do
+      it 'returns cell numbers of the corners' do
+        expect(game_master.send(:corner_moves)).to eq([1,3,7,9])
+      end
+    end
+
+    context '4x4 grid' do
+      let(:board) { Board.new(4,4) }
+      it 'returns cell numbers of the corners' do
+        expect(game_master.send(:corner_moves)).to eq([1,4,13,16])
+      end
+    end
+
+  end
+
   describe '#best_move' do
     it 'returns value for cell' do
       expect( game_master.best_move(board: board) ).to be_between(1, 9)
