@@ -130,12 +130,14 @@ module XAndOs
     end
 
     def corner_moves
-      # [1,3,7,9]
-      corner_moves = [1]
       total_columns = mastery_board.columns
-      corner_moves << total_columns
-      corner_moves << (total_cells - total_columns) + 1
-      corner_moves << total_cells
+
+      top_left      = 1
+      top_right     = mastery_board.columns
+      bottom_left   = (total_cells - total_columns) + 1
+      bottom_right  = total_cells
+
+      [top_left, top_right, bottom_left, bottom_right]
     end
     
   end
